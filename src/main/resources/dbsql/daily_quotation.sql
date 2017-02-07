@@ -1,0 +1,22 @@
+CREATE TABLE `daily_quotation` (
+  `id` int(10) unsigned NOT NULL AUTO_INCREMENT COMMENT 'id',
+  `data_source` varchar(255) DEFAULT NULL COMMENT '数据来源',
+  `stock_code` varchar(255) NOT NULL COMMENT '股票代码',
+  `stock_name` varchar(255) NOT NULL COMMENT '股票名称',
+  `date` date NOT NULL COMMENT '行情日期',
+  `yesterday_closing_price` decimal(10,4) DEFAULT NULL COMMENT '昨日收盘价',
+  `opening_price` decimal(10,4) DEFAULT NULL COMMENT '开盘价',
+  `closing_price` decimal(10,4) DEFAULT NULL COMMENT '收盘价',
+  `high_limit` decimal(10,4) DEFAULT NULL COMMENT '涨停价',
+  `low_limit` decimal(10,4) DEFAULT NULL COMMENT '跌停价',
+  `change_value` decimal(10,4) DEFAULT NULL COMMENT '涨跌额',
+  `change_rate` decimal(10,4) DEFAULT NULL COMMENT '涨跌幅',
+  `low_price` decimal(10,4) DEFAULT NULL COMMENT '最低价',
+  `high_price` decimal(10,4) DEFAULT NULL COMMENT '最高价',
+  `amplitude` decimal(10,4) DEFAULT NULL COMMENT '振幅',
+  `volume` decimal(14,2) DEFAULT NULL COMMENT '成交量(手)',
+  `amount` decimal(14,2) DEFAULT NULL COMMENT '成交金额(万)',
+  `turnover_rate` decimal(10,4) DEFAULT NULL COMMENT '换手率',
+  PRIMARY KEY (`id`),
+  UNIQUE KEY `uni` (`stock_code`,`date`,`data_source`) USING BTREE
+) ENGINE=InnoDB AUTO_INCREMENT=1038776 DEFAULT CHARSET=utf8 COMMENT='每日行情表';

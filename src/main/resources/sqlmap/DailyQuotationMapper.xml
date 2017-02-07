@@ -1,0 +1,266 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.hzp.stock.dao.DailyQuotationMapper">
+  <resultMap id="BaseResultMap" type="com.hzp.stock.dao.dataobject.DailyQuotation">
+    <id column="id" jdbcType="INTEGER" property="id" />
+    <result column="data_source" jdbcType="VARCHAR" property="dataSource" />
+    <result column="stock_code" jdbcType="VARCHAR" property="stockCode" />
+    <result column="stock_name" jdbcType="VARCHAR" property="stockName" />
+    <result column="date" jdbcType="DATE" property="date" />
+    <result column="yesterday_closing_price" jdbcType="DECIMAL" property="yesterdayClosingPrice" />
+    <result column="opening_price" jdbcType="DECIMAL" property="openingPrice" />
+    <result column="closing_price" jdbcType="DECIMAL" property="closingPrice" />
+    <result column="high_limit" jdbcType="DECIMAL" property="highLimit" />
+    <result column="low_limit" jdbcType="DECIMAL" property="lowLimit" />
+    <result column="change_value" jdbcType="DECIMAL" property="changeValue" />
+    <result column="change_rate" jdbcType="DECIMAL" property="changeRate" />
+    <result column="low_price" jdbcType="DECIMAL" property="lowPrice" />
+    <result column="high_price" jdbcType="DECIMAL" property="highPrice" />
+    <result column="amplitude" jdbcType="DECIMAL" property="amplitude" />
+    <result column="volume" jdbcType="DECIMAL" property="volume" />
+    <result column="amount" jdbcType="DECIMAL" property="amount" />
+    <result column="turnover_rate" jdbcType="DECIMAL" property="turnoverRate" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    id, data_source, stock_code, stock_name, date, yesterday_closing_price, opening_price, 
+    closing_price, high_limit, low_limit, change_value, change_rate, low_price, high_price, 
+    amplitude, volume, amount, turnover_rate
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from daily_quotation
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from daily_quotation
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.hzp.stock.dao.dataobject.DailyQuotation">
+    insert into daily_quotation (id, data_source, stock_code, 
+      stock_name, date, yesterday_closing_price, 
+      opening_price, closing_price, high_limit, 
+      low_limit, change_value, change_rate, 
+      low_price, high_price, amplitude, 
+      volume, amount, turnover_rate
+      )
+    values (#{id,jdbcType=INTEGER}, #{dataSource,jdbcType=VARCHAR}, #{stockCode,jdbcType=VARCHAR}, 
+      #{stockName,jdbcType=VARCHAR}, #{date,jdbcType=DATE}, #{yesterdayClosingPrice,jdbcType=DECIMAL}, 
+      #{openingPrice,jdbcType=DECIMAL}, #{closingPrice,jdbcType=DECIMAL}, #{highLimit,jdbcType=DECIMAL}, 
+      #{lowLimit,jdbcType=DECIMAL}, #{changeValue,jdbcType=DECIMAL}, #{changeRate,jdbcType=DECIMAL}, 
+      #{lowPrice,jdbcType=DECIMAL}, #{highPrice,jdbcType=DECIMAL}, #{amplitude,jdbcType=DECIMAL}, 
+      #{volume,jdbcType=DECIMAL}, #{amount,jdbcType=DECIMAL}, #{turnoverRate,jdbcType=DECIMAL}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.hzp.stock.dao.dataobject.DailyQuotation">
+    insert into daily_quotation
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        id,
+      </if>
+      <if test="dataSource != null">
+        data_source,
+      </if>
+      <if test="stockCode != null">
+        stock_code,
+      </if>
+      <if test="stockName != null">
+        stock_name,
+      </if>
+      <if test="date != null">
+        date,
+      </if>
+      <if test="yesterdayClosingPrice != null">
+        yesterday_closing_price,
+      </if>
+      <if test="openingPrice != null">
+        opening_price,
+      </if>
+      <if test="closingPrice != null">
+        closing_price,
+      </if>
+      <if test="highLimit != null">
+        high_limit,
+      </if>
+      <if test="lowLimit != null">
+        low_limit,
+      </if>
+      <if test="changeValue != null">
+        change_value,
+      </if>
+      <if test="changeRate != null">
+        change_rate,
+      </if>
+      <if test="lowPrice != null">
+        low_price,
+      </if>
+      <if test="highPrice != null">
+        high_price,
+      </if>
+      <if test="amplitude != null">
+        amplitude,
+      </if>
+      <if test="volume != null">
+        volume,
+      </if>
+      <if test="amount != null">
+        amount,
+      </if>
+      <if test="turnoverRate != null">
+        turnover_rate,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="dataSource != null">
+        #{dataSource,jdbcType=VARCHAR},
+      </if>
+      <if test="stockCode != null">
+        #{stockCode,jdbcType=VARCHAR},
+      </if>
+      <if test="stockName != null">
+        #{stockName,jdbcType=VARCHAR},
+      </if>
+      <if test="date != null">
+        #{date,jdbcType=DATE},
+      </if>
+      <if test="yesterdayClosingPrice != null">
+        #{yesterdayClosingPrice,jdbcType=DECIMAL},
+      </if>
+      <if test="openingPrice != null">
+        #{openingPrice,jdbcType=DECIMAL},
+      </if>
+      <if test="closingPrice != null">
+        #{closingPrice,jdbcType=DECIMAL},
+      </if>
+      <if test="highLimit != null">
+        #{highLimit,jdbcType=DECIMAL},
+      </if>
+      <if test="lowLimit != null">
+        #{lowLimit,jdbcType=DECIMAL},
+      </if>
+      <if test="changeValue != null">
+        #{changeValue,jdbcType=DECIMAL},
+      </if>
+      <if test="changeRate != null">
+        #{changeRate,jdbcType=DECIMAL},
+      </if>
+      <if test="lowPrice != null">
+        #{lowPrice,jdbcType=DECIMAL},
+      </if>
+      <if test="highPrice != null">
+        #{highPrice,jdbcType=DECIMAL},
+      </if>
+      <if test="amplitude != null">
+        #{amplitude,jdbcType=DECIMAL},
+      </if>
+      <if test="volume != null">
+        #{volume,jdbcType=DECIMAL},
+      </if>
+      <if test="amount != null">
+        #{amount,jdbcType=DECIMAL},
+      </if>
+      <if test="turnoverRate != null">
+        #{turnoverRate,jdbcType=DECIMAL},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.hzp.stock.dao.dataobject.DailyQuotation">
+    update daily_quotation
+    <set>
+      <if test="dataSource != null">
+        data_source = #{dataSource,jdbcType=VARCHAR},
+      </if>
+      <if test="stockCode != null">
+        stock_code = #{stockCode,jdbcType=VARCHAR},
+      </if>
+      <if test="stockName != null">
+        stock_name = #{stockName,jdbcType=VARCHAR},
+      </if>
+      <if test="date != null">
+        date = #{date,jdbcType=DATE},
+      </if>
+      <if test="yesterdayClosingPrice != null">
+        yesterday_closing_price = #{yesterdayClosingPrice,jdbcType=DECIMAL},
+      </if>
+      <if test="openingPrice != null">
+        opening_price = #{openingPrice,jdbcType=DECIMAL},
+      </if>
+      <if test="closingPrice != null">
+        closing_price = #{closingPrice,jdbcType=DECIMAL},
+      </if>
+      <if test="highLimit != null">
+        high_limit = #{highLimit,jdbcType=DECIMAL},
+      </if>
+      <if test="lowLimit != null">
+        low_limit = #{lowLimit,jdbcType=DECIMAL},
+      </if>
+      <if test="changeValue != null">
+        change_value = #{changeValue,jdbcType=DECIMAL},
+      </if>
+      <if test="changeRate != null">
+        change_rate = #{changeRate,jdbcType=DECIMAL},
+      </if>
+      <if test="lowPrice != null">
+        low_price = #{lowPrice,jdbcType=DECIMAL},
+      </if>
+      <if test="highPrice != null">
+        high_price = #{highPrice,jdbcType=DECIMAL},
+      </if>
+      <if test="amplitude != null">
+        amplitude = #{amplitude,jdbcType=DECIMAL},
+      </if>
+      <if test="volume != null">
+        volume = #{volume,jdbcType=DECIMAL},
+      </if>
+      <if test="amount != null">
+        amount = #{amount,jdbcType=DECIMAL},
+      </if>
+      <if test="turnoverRate != null">
+        turnover_rate = #{turnoverRate,jdbcType=DECIMAL},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.hzp.stock.dao.dataobject.DailyQuotation">
+    update daily_quotation
+    set data_source = #{dataSource,jdbcType=VARCHAR},
+      stock_code = #{stockCode,jdbcType=VARCHAR},
+      stock_name = #{stockName,jdbcType=VARCHAR},
+      date = #{date,jdbcType=DATE},
+      yesterday_closing_price = #{yesterdayClosingPrice,jdbcType=DECIMAL},
+      opening_price = #{openingPrice,jdbcType=DECIMAL},
+      closing_price = #{closingPrice,jdbcType=DECIMAL},
+      high_limit = #{highLimit,jdbcType=DECIMAL},
+      low_limit = #{lowLimit,jdbcType=DECIMAL},
+      change_value = #{changeValue,jdbcType=DECIMAL},
+      change_rate = #{changeRate,jdbcType=DECIMAL},
+      low_price = #{lowPrice,jdbcType=DECIMAL},
+      high_price = #{highPrice,jdbcType=DECIMAL},
+      amplitude = #{amplitude,jdbcType=DECIMAL},
+      volume = #{volume,jdbcType=DECIMAL},
+      amount = #{amount,jdbcType=DECIMAL},
+      turnover_rate = #{turnoverRate,jdbcType=DECIMAL}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+
+  <insert id="batchInsert" parameterType="java.util.List">
+    insert into daily_quotation (id, data_source, stock_code,
+    stock_name, date, yesterday_closing_price,
+    opening_price, closing_price, high_limit,
+    low_limit, change_value, change_rate,
+    low_price, high_price, amplitude,
+    volume, amount, turnover_rate)
+    values
+    <foreach collection="list" index="index" item="item" separator=",">
+      (#{item.id,jdbcType=INTEGER}, #{item.dataSource,jdbcType=VARCHAR}, #{item.stockCode,jdbcType=VARCHAR}, #{item.stockName,jdbcType=VARCHAR},
+      #{item.date,jdbcType=DATE}, #{item.yesterdayClosingPrice,jdbcType=DECIMAL}, #{item.openingPrice,jdbcType=DECIMAL}, #{item.closingPrice,jdbcType=DECIMAL},
+      #{item.highLimit,jdbcType=DECIMAL}, #{item.lowLimit,jdbcType=DECIMAL}, #{item.changeValue,jdbcType=DECIMAL}, #{item.changeRate,jdbcType=DECIMAL}, #{item.lowPrice,jdbcType=DECIMAL},
+      #{item.highPrice,jdbcType=DECIMAL}, #{item.amplitude,jdbcType=DECIMAL}, #{item.volume,jdbcType=DECIMAL}, #{item.amount,jdbcType=DECIMAL},
+      #{item.turnoverRate,jdbcType=DECIMAL})
+    </foreach>
+  </insert>
+
+</mapper>
